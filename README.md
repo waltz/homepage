@@ -1,4 +1,3 @@
-christianbryan.net
-==================
+# Deep Yogurt
 
-Homeworld. 
+This is my small slice of the internet. Come take a look: http://deepyogurt.org
