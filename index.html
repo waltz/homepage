@@ -4,18 +4,14 @@
     <title>Deep Yogurt</title>
     <meta charset="utf-8" />
     <style type="text/css">
-      @font-face {
-          font-family: 'JockeyOne-Regular';
-          src: url('jockeyone-regular.otf');
-          font-weight: normal;
-          font-style: normal;
-      }
       html, body {
          margin: 0;
          padding: 0;
       }
       body {
-         background-color: #eee;
+         background-color: #fff;
+         background-image: url('./background.png');
+         background-size: cover;
       }
       #container {
          margin: 0;
@@ -23,26 +19,16 @@
          width: 100%;
       }
       #content {
+         background-color: #fff;
          color: #333;
-         margin-top: 200px;
          margin-left: auto;
          margin-right: auto;
-         width: 800px;
-         text-align: center;
+         width: 20em;
          font-family: "Georgia", "Times", serif;
       }
-      #content h1 {
-         font-family: "JockeyOne-Regular", sans-serif;
-         font-size: 4em;
-         text-shadow: 1px 1px 2px #ffffff;
-         margin-bottom: 15px;
-      }
       #content ul {
-         margin: 0;
-         padding: 0;
       }
       #content ul, #content li {
-         list-style-type: none;
       }
       #content li {
          margin: 5px;
@@ -65,12 +51,11 @@
   <body>
     <div id="container">
       <div id="content">
-        <h1>Welcome to Deep Yogurt</h1>
-        <h2>The internet home of CJ Bryan</h2>
+        <h1>Hi, this is Deep Yogurt. The internet home of CJ Bryan</h1>        
         <ul>
           <li>I live in Oakland, California and build neat software.</li>
-          <li><a href="mailto:cj@deepyogurt.org">cj@deepyogurt.org</a> (<a href="./pubkey.asc">pubkey</a>)</li>
-          <li><a href="http://twitter.com/waltz">@waltz</a></li>
+          <li>Send me an email: <a href="mailto:cj@deepyogurt.org">cj@deepyogurt.org</a> (<a href="./pubkey.asc">pubkey</a>)</li>
+          <li>Follow me on Twitter: <a href="http://twitter.com/waltz">@waltz</a></li>
         </ul>
       </div>
     </div>
