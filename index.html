@@ -12,45 +12,40 @@
          background-color: #fff;
          background-image: url('./background.png');
          background-size: cover;
-      }
-      @media only screen and (max-device-width: 480px) {
-        html {
-          font-size: 4em;
-        }
-      }
-      #container {
-        width: 100%;
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+         min-height: 60vh;
       }
       #content {
          background-color: #fff;
          color: #333;
          font-family: "Georgia", "Times", serif;
-         margin-top: 1em;
-         margin-left: auto;
-         margin-right: auto;
-         width: 20em;
-         padding: 0.5em;
+         padding: 1em;
          border-style: solid;
-         border-width: 0.5em 2em 2em 0.5em;
-         border-color: beige gray gray beige;
+         border-width: #333333;
+         border-color: black;
       }
-      @media only screen and (max-device-width: 480px) {
-        #content {
-          width: auto;
-        }
+      h1 {
+        margin: 0 0 0.5em 0;
+      }
+      ul {
+        margin: 0;
+        padding-left: 1em;
       }
     </style>
   </head>
   <body>
-    <div id="container">
-      <div id="content">
-        <h1>Hi, I'm CJ Bryan.</h1>
-        <ul>
-          <li>I live in Oakland, California and build neat software.</li>
-          <li>Send me an email: <a href="mailto:cj@cjbryan.io">cj@cjbryan.io</a> (<a href="./pubkey.asc">pubkey</a>)</li>
-          <li>Follow me on Twitter: <a href="http://twitter.com/waltz">@waltz</a></li>
-        </ul>
-      </div>
+    <div id="content">
+      <h1>Hi, I'm CJ Bryan</h1>
+      <ul>
+        <li>I live in Oakland, California and build neat software.</li>
+        <li>Send me an email: <a href="mailto:cj@cjbryan.io">cj@cjbryan.io</a> (<a href="./pubkey.asc">public key</a>)</li>
+        <li>Follow me on Twitter: <a href="http://twitter.com/waltz">@waltz</a></li>
+        <li>My work on GitHub: <a href="https://github.com/waltz">waltz</a></li>
+        <li>Profesionally, on <a href="https://www.linkedin.com/in/thatcjbryan/">LinkedIn</a></li>
+      </ul>
     </div>
  </body>
 </html>
