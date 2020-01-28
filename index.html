@@ -9,23 +9,29 @@
          padding: 0;
       }
       body {
-         background-color: #fff;
-         background-image: url('./background.png');
-         background-size: cover;
          display: flex;
          flex-direction: column;
          justify-content: center;
          align-items: center;
          min-height: 60vh;
+         background-color: #E5FFF5;
+         color: #73807A;
+      }
+      #pattern {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
       }
       #content {
-         background-color: #fff;
-         color: #333;
+        background-color: #E5FFF5;
          font-family: "Georgia", "Times", serif;
          padding: 1em;
          border-style: solid;
          border-width: #333333;
          border-color: black;
+         z-index: 100;
       }
       h1 {
         margin: 0 0 0.5em 0;
@@ -37,6 +43,7 @@
     </style>
   </head>
   <body>
+    <svg id="pattern"></svg>
     <div id="content">
       <h1>Hi, I'm CJ Bryan</h1>
       <ul>
@@ -47,5 +54,97 @@
         <li>Profesionally, on <a href="https://www.linkedin.com/in/thatcjbryan/">LinkedIn</a></li>
       </ul>
     </div>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.15/lodash.min.js"></script>
+    <script>
+      var pattern = d3.select('#pattern');
+      var bounds = getBoundsInPixels(pattern.node()); 
+      var startAt = [bounds.x, bounds.y];
+      var drawTime = 500;
+      var prevColor = null;
+      var headingInDegrees = 30;
+
+      function getBoundsInPixels(element) {
+        element.width.baseVal.convertToSpecifiedUnits(SVGLength.SVG_LENGTHTYPE_PX);
+        element.height.baseVal.convertToSpecifiedUnits(SVGLength.SVG_LENGTHTYPE_PX);
+
+        return {
+          x: 0,
+          y: 0,
+          width: element.clientWidth,
+          height: element.clientHeight
+        };
+      }
+
+      function nextColor() {
+        var teal = '#99FFD6';
+        var mint = '#80E8A1';
+        var green = '#8CFF90';
+
+        var colors = [teal, mint, green];
+
+        var newColor = _.reject(colors, c => c === prevColor)[_.random(0, colors.length - 2)];
+
+        prevColor = newColor;
+
+        return newColor;
+      }
+
+      function findEnd(startAt, baseLength) {
+        var baseLength = baseLength || 60;
+        var lineLength = _.random(baseLength - 30, baseLength + 30);
+        var angleVariance = _.random(-30, 30);
+
+        var headingInRadians = (headingInDegrees + angleVariance) * (Math.PI/180);
+        var endingX = startAt[0] + lineLength * Math.cos(headingInRadians);
+        var endingY = startAt[1] + lineLength * Math.sin(headingInRadians);
+
+        var bounds = getBoundsInPixels(d3.select('#pattern').node());
+
+        if (bounds.height > 0 && bounds.width > 0
+          && (endingX > bounds.width || endingY > bounds.height || endingX < bounds.x || endingY < bounds.y)) {
+          headingInDegrees += _.random(150, 210);
+
+          if (endingX > bounds.width || endingY > bounds.height) {
+            endingX = Math.min(endingX, bounds.width);
+            endingY = Math.min(endingY, bounds.height);
+          }
+
+          if (endingX < 0 || endingY < 0) {
+            endingX = Math.max(endingX, 0);
+            endingY = Math.max(endingY, 0);
+          }
+        }
+
+        return [endingX, endingY];
+      }
+
+      function drawLine() {
+        var endAt = findEnd(startAt);
+
+        pattern.append('line')
+               .style('stroke', nextColor())
+               .style('stroke-width', 5)
+               .attr('x1', startAt[0])
+               .attr('y1', startAt[1])
+               .attr('x2', startAt[0])
+               .attr('y2', startAt[1])
+               .transition()
+               .duration(drawTime)
+               .attr('x2', endAt[0])
+               .attr('y2', endAt[1]);
+
+        startAt = endAt;
+      }
+
+      function drawDriver() {
+        setTimeout(function() {
+          drawLine();
+          drawDriver();
+        }, drawTime);
+      }
+
+      drawDriver();
+    </script>
  </body>
 </html>
