@@ -4,6 +4,7 @@ var startAt = [bounds.x, bounds.y];
 var drawTime = 500;
 var prevColor = null;
 var headingInDegrees = 30;
+var maxLines = 2000;
 
 function getBoundsInPixels(element) {
   return {
@@ -82,8 +83,10 @@ function drawLine() {
 
 function drawDriver() {
   setTimeout(function() {
-    drawLine();
-    drawDriver();
+    if (pattern.node().children.length < maxLines) {
+      drawLine();
+      drawDriver();
+    }
   }, drawTime);
 }
 
