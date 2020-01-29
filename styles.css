@@ -3,14 +3,17 @@ html, body {
   padding: 0;
 }
 body {
-  border: 1px solid orange;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
   background-color: #E5FFF5;
   color: #73807A;
+}
+@media screen and (min-width: 575px) {
+  body {
+    min-height: 60vh; 
+  }
 }
 a {
   color: #807573; 
@@ -24,9 +27,10 @@ a:visited {
   left: 0;
   height: 100vh;
   width: 100vw;
+  z-index: -1;
 }
 #content {
-  background-color: rgba(229, 255, 245, 0.75);
+  background-color: rgba(229, 255, 245, 0.66);
   font-family: "Quicksand", "Helvetica", "Arial", sans-serif;
   padding: 1em;
   border-style: solid;
@@ -34,7 +38,6 @@ a:visited {
   border-color: #29332F;
   color: #29332F;
   font-color: #29332F;
-  z-index: 100;
 }
 h1 {
   margin: 0;
